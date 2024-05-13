@@ -39,7 +39,18 @@ public class CompanyDetailsSearchControllerIT {
 
     @Test
     void shouldRetrieveCompanyDetailsSearchResultWhenCompanyNumberIsFound() throws JSONException {
+        JSONObject companySearchDetailsRequestBody = createCompanySearchDetailsRequestBody(2001L);
+        HttpEntity<String> entity = new HttpEntity<>(companySearchDetailsRequestBody.toString(), httpHeaders);
+        ResponseEntity<Object> responseEntity = restTemplate.postForEntity(createURLWithPort(), entity, Object.class);
+        Assertions.assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
+        Assertions.assertNotNull(responseEntity.getBody());
+        Assertions.assertTrue(((HashMap<?,?>)responseEntity.getBody()).get("items").toString().contains("company_type=LTD"));
+    }
+
+    @Test
+    void shouldRetrieveCompanyDetailsSearchResultWhenCompanyNumberIsFoundWithActiveStatus() throws JSONException {
         JSONObject companySearchDetailsRequestBody = createCompanySearchDetailsRequestBody(2000L);
+        httpHeaders.set("status", "ACTIVE");
         HttpEntity<String> entity = new HttpEntity<>(companySearchDetailsRequestBody.toString(), httpHeaders);
         ResponseEntity<Object> responseEntity = restTemplate.postForEntity(createURLWithPort(), entity, Object.class);
         Assertions.assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
@@ -49,7 +60,18 @@ public class CompanyDetailsSearchControllerIT {
 
     @Test
     void shouldRetrieveCompanyDetailsSearchResultWhenCompanyNameIsFound() throws JSONException {
+        JSONObject companySearchDetailsRequestBody = createCompanySearchDetailsRequestBodyWithNameOnly("XYZ");
+        HttpEntity<String> entity = new HttpEntity<>(companySearchDetailsRequestBody.toString(), httpHeaders);
+        ResponseEntity<Object> responseEntity = restTemplate.postForEntity(createURLWithPort(), entity, Object.class);
+        Assertions.assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
+        Assertions.assertNotNull(responseEntity.getBody());
+        Assertions.assertTrue(((HashMap<?,?>)responseEntity.getBody()).get("items").toString().contains("company_type=LTD"));
+    }
+
+    @Test
+    void shouldRetrieveCompanyDetailsSearchResultWhenCompanyNameIsFoundWithActiveStatus() throws JSONException {
         JSONObject companySearchDetailsRequestBody = createCompanySearchDetailsRequestBodyWithNameOnly("ABC");
+        httpHeaders.set("status", "ACTIVE");
         HttpEntity<String> entity = new HttpEntity<>(companySearchDetailsRequestBody.toString(), httpHeaders);
         ResponseEntity<Object> responseEntity = restTemplate.postForEntity(createURLWithPort(), entity, Object.class);
         Assertions.assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
