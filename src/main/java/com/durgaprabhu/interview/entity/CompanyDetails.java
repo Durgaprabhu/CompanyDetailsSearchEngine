@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -45,5 +46,6 @@ public class CompanyDetails {
 
     @OneToMany
     @JoinColumn(name = "OFFICER_COMPANY_ID")
+    @Where(clause = "RESIGNED_ON IS NULL")
     private List<OfficerDetails> officerDetails;
 }
