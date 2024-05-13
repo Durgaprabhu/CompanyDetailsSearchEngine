@@ -6,14 +6,20 @@ IntelliJ IDEA 2024.1.1 (Community Edition) has been used to build this search en
 Postman is used for testing and the collection has been added.
 H2Database is used
 
-"# Build"
+"# Build -- it will build the code and run the unit test cases"
 mvn clean install
+
+"# Integration test can be executed from the below class"
+CompanyDetailsSearchControllerIT
+
 
 "# Start the application"
 mvn spring-boot:start
 
 "# Stop the application"
 mvn spring-boot:stop
+
+
 
 "# URL to access the H2 database for data manipulation"
 http://localhost:8080/DurgaprabhuSearchAPI/h2-console/login.jsp
