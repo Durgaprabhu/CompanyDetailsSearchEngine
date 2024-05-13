@@ -39,14 +39,14 @@ public class CompanyDetailsSearchServiceImpl implements CompanyDetailsSearchServ
     @Override
     @Transactional(readOnly = true)
     public CompanyDetails getCompanyRecordByCompanyNumberAndCompanyStatus(Long companyNumber, String companyStatus) {
-        logger.trace("getCompanyRecordByCompanyNumberAndCompanyStatus called with Company Number :%s ,Company Status %s ", companyNumber,companyStatus);
+        logger.trace("getCompanyRecordByCompanyNumberAndCompanyStatus called with Company Number :{} ,Company Status {} ", companyNumber,companyStatus);
         return companyDetailsSearchRepository.findByCompanyNumberAndCompanyStatus(companyNumber, companyStatus);
     }
 
     @Override
     @Transactional(readOnly = true)
     public CompanyDetails getCompanyRecordByCompanyNameAndCompanyStatus(String companyName, String companyStatus) {
-        logger.trace("getCompanyRecordByCompanyNumberAndCompanyStatus called with Company Name :%s ,Company Status %s ", companyName,companyStatus);
+        logger.trace("getCompanyRecordByCompanyNumberAndCompanyStatus called with Company Name :{} ,Company Status {} ", companyName,companyStatus);
         return companyDetailsSearchRepository.findByCompanyNameAndCompanyStatus(companyName, companyStatus);
     }
 
