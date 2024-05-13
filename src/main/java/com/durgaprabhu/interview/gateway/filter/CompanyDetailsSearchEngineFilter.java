@@ -15,21 +15,24 @@ public class CompanyDetailsSearchEngineFilter implements Filter {
 
     private static final String X_API_KEY = "x-api-key";
     private static final String X_API_KEY_VALUE = "localtest";
+    public static final String H2DB_CONSOLE = "h2-console";
 
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-
-        String apiKey = httpServletRequest.getHeader(X_API_KEY);
-
-        if(Objects.nonNull(apiKey) && apiKey.equals(X_API_KEY_VALUE)){
+        if(httpServletRequest.getRequestURI().contains(H2DB_CONSOLE)){
             filterChain.doFilter(httpServletRequest, servletResponse);
         }else{
-            HttpServletResponse http = (HttpServletResponse) servletResponse;
-            http.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorised access");
-        }
+            String apiKey = httpServletRequest.getHeader(X_API_KEY);
 
+            if(Objects.nonNull(apiKey) && apiKey.equals(X_API_KEY_VALUE)){
+                filterChain.doFilter(httpServletRequest, servletResponse);
+            }else{
+                HttpServletResponse http = (HttpServletResponse) servletResponse;
+                http.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorised access");
+            }
+        }
     }
 
     @Bean
@@ -37,7 +40,7 @@ public class CompanyDetailsSearchEngineFilter implements Filter {
         FilterRegistrationBean<CompanyDetailsSearchEngineFilter> registrationBean = new FilterRegistrationBean<>();
 
         registrationBean.setFilter(new CompanyDetailsSearchEngineFilter());
-        registrationBean.addUrlPatterns("/Companies/*");
+        registrationBean.addUrlPatterns("*");
 
         return registrationBean;
     }
