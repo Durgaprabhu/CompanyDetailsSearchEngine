@@ -82,8 +82,7 @@ public class CompanyDetailsSearchHelper {
         logger.trace("createOfficerDetailsDtoList method");
 
         List<OfficerDetailsDto> officerDetailsDtoList = new ArrayList<>();
-        List<OfficerDetails> currentOfficerDetailsList = officerDetailsList.stream().filter(officerDetails -> Objects.isNull(officerDetails.getResignedOn())).toList();
-        for (OfficerDetails officerDetails: currentOfficerDetailsList) {
+        for (OfficerDetails officerDetails: officerDetailsList) {
             OfficerDetailsDto officerDetailsDto = modelMapper.map(officerDetails, OfficerDetailsDto.class);
             officerDetailsDto.setAddressDetailsDto(createAddressDetailsDto(officerDetails.getAddressDetails()));
             officerDetailsDto.setFullName(officerDetails.getLastName() +"," +officerDetails.getFirstName());
