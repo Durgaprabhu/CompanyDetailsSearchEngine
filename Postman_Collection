@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "4439b8ae-2fe6-4290-b559-dc442e528ba8",
+		"name": "CompanyDetailsSearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Company Details Search With Status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "localtest",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyNumber\": 2000,\r\n    \"companyName\": \"ABC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/DurgaprabhuSearchAPI/Companies/v1/search?status=ACTIVE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"DurgaprabhuSearchAPI",
+						"Companies",
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "ACTIVE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company Details Search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "localtest",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyNumber\": 2001,\r\n    \"companyName\": \"ABC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/DurgaprabhuSearchAPI/Companies/v1/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"DurgaprabhuSearchAPI",
+						"Companies",
+						"v1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
