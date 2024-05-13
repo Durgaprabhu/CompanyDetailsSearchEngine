@@ -14,3 +14,9 @@ mvn spring-boot:start
 
 "# Stop the application"
 mvn spring-boot:stop
+
+"# URL to access the H2 database for data manipulation"
+http://localhost:8080/DurgaprabhuSearchAPI/h2-console/login.jsp
+
+JDBC URL: jdbc:h2:mem:cdseng
+password : localenvtest
