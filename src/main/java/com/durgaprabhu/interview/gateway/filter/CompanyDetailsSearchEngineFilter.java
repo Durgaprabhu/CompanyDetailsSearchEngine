@@ -14,7 +14,7 @@ import java.util.Objects;
 public class CompanyDetailsSearchEngineFilter implements Filter {
 
     private static final String X_API_KEY = "x-api-key";
-    private static final String X_API_KEY_VALUE = "localtest";
+    private static final String X_API_KEY_VALUE = "PwewCEztSW7XlaAKqkg4IaOsPelGynw6SN9WsbNf";
     public static final String H2DB_CONSOLE = "h2-console";
 
 

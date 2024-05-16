@@ -25,7 +25,7 @@ public class CompanyDetailsSearchControllerIT {
     private static final String COMPANY_DETAILS_SEARCH_URI = "/DurgaprabhuSearchAPI/Companies/v1/search";
     private static final String LOCALHOST = "http://localhost:";
     private static final String X_API_KEY = "x-api-key";
-    private static final String X_API_KEY_VALUE = "localtest";
+    private static final String X_API_KEY_VALUE = "PwewCEztSW7XlaAKqkg4IaOsPelGynw6SN9WsbNf";
     TestRestTemplate restTemplate;
     HttpHeaders httpHeaders;
 
