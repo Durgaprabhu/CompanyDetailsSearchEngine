@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -25,7 +26,9 @@ public class CompanyDetailsSearchControllerIT {
     private static final String COMPANY_DETAILS_SEARCH_URI = "/DurgaprabhuSearchAPI/Companies/v1/search";
     private static final String LOCALHOST = "http://localhost:";
     private static final String X_API_KEY = "x-api-key";
-    private static final String X_API_KEY_VALUE = "PwewCEztSW7XlaAKqkg4IaOsPelGynw6SN9WsbNf";
+    @Value("${truproxy.api.key}")
+    private String X_API_KEY_VALUE;
+
     TestRestTemplate restTemplate;
     HttpHeaders httpHeaders;
 
