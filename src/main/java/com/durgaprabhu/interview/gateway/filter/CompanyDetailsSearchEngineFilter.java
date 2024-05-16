@@ -3,6 +3,7 @@ package com.durgaprabhu.interview.gateway.filter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -14,9 +15,10 @@ import java.util.Objects;
 public class CompanyDetailsSearchEngineFilter implements Filter {
 
     private static final String X_API_KEY = "x-api-key";
-    private static final String X_API_KEY_VALUE = "PwewCEztSW7XlaAKqkg4IaOsPelGynw6SN9WsbNf";
     public static final String H2DB_CONSOLE = "h2-console";
 
+    @Value("${truproxy.api.key}")
+    private String X_API_KEY_VALUE;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -39,7 +41,7 @@ public class CompanyDetailsSearchEngineFilter implements Filter {
     public FilterRegistrationBean<CompanyDetailsSearchEngineFilter> companyDetailsSearchEngineFilterFilterRegistrationBean(){
         FilterRegistrationBean<CompanyDetailsSearchEngineFilter> registrationBean = new FilterRegistrationBean<>();
 
-        registrationBean.setFilter(new CompanyDetailsSearchEngineFilter());
+        registrationBean.setFilter(this);
         registrationBean.addUrlPatterns("*");
 
         return registrationBean;
